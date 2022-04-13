@@ -3,16 +3,16 @@
    <% @order.line_items.each do | item | %>
     <% product = Product.find(item.product_id) %>
 
-    <h3 style="text-align: center"> Name: <%= product.name %> </h3>
+    <h3 style="text-align: center"> <b><%= product.name %></b> </h3>
     <p style="text-align: center"><img src="<%= product.image %>" /></p>
 
     <p> <b>Description:</b> <%= product.description %> </p>
     <p> <b>Quantity:</b> <%= item.quantity %> </p>
-    <p> <b>Item Total:</b> <%= item.item_price_cents %> </p>
+    <p> <b>Item Total:</b> <%= number_with_precision(item.item_price_cents / 100, precision: 2) %> </p>
   <% end %>
 
   <div style="text-align: center">
-    <p> <b>Total:</b> <%= @order.total_cents %> </p>
+  <p> <b>Total:</b> <%= number_with_precision(@order.total_cents / 100, precision: 2) %> </p>
     <p> <b>Email:</b> <%= @order.email %> </p>
   </div>
     <br>
